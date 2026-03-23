@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm migrate && next dev",
+    "dev": "pnpm migrate && next dev -H 127.0.0.1",
     "build": "next build",
     "start": "pnpm migrate && next start",
     "lint": "eslint",
-    "migrate": "tsx scripts/migrate.ts"
+    "migrate": "tsx scripts/migrate.ts",
+    "gen-key": "tsx scripts/gen-key.ts"
   },
   "dependencies": {
     "@atproto/oauth-client-node": "^0.3.17",
