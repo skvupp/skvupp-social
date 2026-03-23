@@ -55,10 +55,8 @@ export async function getOAuthClient(): Promise<NodeOAuthClient> {
 
     client = new NodeOAuthClient({
         requestLock: requestLocalLock,
-        clientMetadata: buildAtprotoLoopbackClientMetadata({
-            scope: SCOPE,
-            redirect_uris: ["http://127.0.0.1:3000/oauth/callback"],
-        }),
+        clientMetadata: getClientMetadata(),
+        keyset: await getKeyset(),
 
         stateStore: {
             async get(key: string) {
