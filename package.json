@@ -11,6 +11,7 @@
     "gen-key": "tsx scripts/gen-key.ts"
   },
   "dependencies": {
+    "@atproto/oauth-client": "^0.6.0",
     "@atproto/oauth-client-node": "^0.3.17",
     "better-sqlite3": "^12.8.0",
     "kysely": "^0.28.14",

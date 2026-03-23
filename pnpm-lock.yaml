@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@atproto/oauth-client':
+        specifier: ^0.6.0
+        version: 0.6.0
       '@atproto/oauth-client-node':
         specifier: ^0.3.17
         version: 0.3.17

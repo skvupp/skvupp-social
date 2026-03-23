@@ -4,6 +4,7 @@ import {
     NodeOAuthClient,
     buildAtprotoLoopbackClientMetadata,
 } from "@atproto/oauth-client-node";
+import { requestLocalLock } from "@atproto/oauth-client";
 import type {
     NodeSavedSession,
     NodeSavedState,
@@ -53,6 +54,7 @@ export async function getOAuthClient(): Promise<NodeOAuthClient> {
     if (client) return client;
 
     client = new NodeOAuthClient({
+        requestLock: requestLocalLock,
         clientMetadata: buildAtprotoLoopbackClientMetadata({
             scope: SCOPE,
             redirect_uris: ["http://127.0.0.1:3000/oauth/callback"],
