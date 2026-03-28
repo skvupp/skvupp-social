@@ -12,7 +12,7 @@ import type {
 } from "@atproto/oauth-client-node";
 import { getDb } from "../db";
 
-export const SCOPE = "atproto";
+export const SCOPE = "atproto repo:xyz.statusphere.status";
 
 let client: NodeOAuthClient | null = null;
 
@@ -20,7 +20,9 @@ const PUBLIC_URL = process.env.PUBLIC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 function getClientMetadata(): OAuthClientMetadataInput {
-    if (PUBLIC_URL) {
+    // If we are developing locally, we MUST NOT use the production PUBLIC_URL for client_id
+    // because the PDS will fetch metadata from that URL, which might be outdated.
+    if (PUBLIC_URL && process.env.NODE_ENV === "production") {
         return {
             client_id: `${PUBLIC_URL}/oauth-client-metadata.json`,
             client_name: "OAuth Tutorial",
@@ -50,8 +52,8 @@ async function getKeyset(): Promise<Keyset | undefined> {
     }
 }
 
-export async function getOAuthClient(): Promise<NodeOAuthClient> {
-    if (client) return client;
+export async function getOAuthClient(fresh = false): Promise<NodeOAuthClient> {
+    if (client && !fresh) return client;
 
     client = new NodeOAuthClient({
         requestLock: requestLocalLock,

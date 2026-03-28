@@ -8,11 +8,16 @@
     "start": "pnpm migrate && next start",
     "lint": "eslint",
     "migrate": "tsx scripts/migrate.ts",
-    "gen-key": "tsx scripts/gen-key.ts"
+    "gen-key": "tsx scripts/gen-key.ts",
+    "tap": "~/go/bin/tap run --webhook-url=http://localhost:3000/api/webhook --collection-filters=xyz.statusphere.status",
+    "lex-build": "lex build --importExt=\"\" --override"
   },
   "dependencies": {
+    "@atproto/common-web": "^0.4.19",
+    "@atproto/lex": "^0.0.22",
     "@atproto/oauth-client": "^0.6.0",
     "@atproto/oauth-client-node": "^0.3.17",
+    "@atproto/syntax": "^0.5.1",
     "better-sqlite3": "^12.8.0",
     "kysely": "^0.28.14",
     "next": "16.2.1",
@@ -20,6 +25,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@atproto/tap": "0.2.11",
     "@tailwindcss/postcss": "^4",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",

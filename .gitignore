@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+.nyc_output
 
 # next.js
 /.next/
@@ -44,3 +45,6 @@ next-env.d.ts
 app.db
 app.db-shm
 app.db-wal
+tap.db
+tap.db-shm
+tap.db-wal
