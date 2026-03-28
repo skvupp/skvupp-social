@@ -1,5 +1,7 @@
 import Database from "better-sqlite3";
 import { Kysely, SqliteDialect } from "kysely";
+import { mkdirSync } from "fs";
+import { dirname } from "path";
 
 const DATABASE_PATH = process.env.DATABASE_PATH || "app.db";
 
@@ -7,6 +9,10 @@ let _db: Kysely<DatabaseSchema> | null = null;
 
 export const getDb = (): Kysely<DatabaseSchema> => {
     if (!_db) {
+        // Ensure parent directory exists
+        const dir = dirname(DATABASE_PATH);
+        mkdirSync(dir, { recursive: true });
+
         const sqlite = new Database(DATABASE_PATH);
         sqlite.pragma("journal_mode = WAL");
 
