@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "pnpm migrate && next dev -H 127.0.0.1",
     "build": "next build",
-    "start": "pnpm migrate && next start",
+    "start": "pnpm migrate && pnpm start:prod",
+    "start:prod": "tsx scripts/tap-run.ts run --webhook-url=${PUBLIC_URL}/api/webhook --collection-filters=xyz.statusphere.status --tap-url=${TAP_URL:-https://eurosky.social} & next start",
     "lint": "eslint",
     "migrate": "tsx scripts/migrate.ts",
     "gen-key": "tsx scripts/gen-key.ts",

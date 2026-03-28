@@ -42,9 +42,15 @@ yarn-error.log*
 next-env.d.ts
 
 .idea
-app.db
-app.db-shm
-app.db-wal
-tap.db
-tap.db-shm
-tap.db-wal
+
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
+# OAuth state files (generated during auth flow)
+4Ftw1FxcbzHzcJotaCb9Pw
+cod-*
+my-app@*
+pnpm
+tsx
